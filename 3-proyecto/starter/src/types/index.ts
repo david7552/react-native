@@ -5,6 +5,7 @@
 // Este type se usará en mockData.ts, ItemCard.tsx y HomeScreen.tsx
 // ============================================================
 
+
 // TODO: Renombra esta interfaz con el nombre de tu elemento
 // Ejemplos: Book, Medication, Member, Dish, Movie, Destination
 export interface Item {
@@ -18,4 +19,13 @@ export interface Item {
   //   Gimnasio → plan: string; expiresAt: string;
   //   Restaurante → price: number; description: string;
   subtitle: string; // campo genérico de apoyo — personaliza según tu dominio
+}
+
+export interface platillo{
+  id:string;
+  nombre:string;
+  categoria:string;
+  descripcion:string;
+  precio:number;
+  imagen:string;
 }
