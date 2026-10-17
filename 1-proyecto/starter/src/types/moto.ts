@@ -25,7 +25,7 @@ export interface Moto{
   id:string;
   nombre:string;
   subtitulo:string;
-  categoria:'scooter'| 'dukati'|'ninja';
+  categoria:'scooter'| 'Naked'|'ducati' |'ninja'
   precioPorDia:number;
   cilindraje:number;
   imagen:string;
