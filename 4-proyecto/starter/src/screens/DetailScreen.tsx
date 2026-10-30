@@ -9,7 +9,9 @@ import { useRoute, type RouteProp } from '@react-navigation/native';
 
 import { COLORS, RADIUS, SPACING, TYPOGRAPHY } from '../theme';
 import type { HomeStackParamList } from '../navigation/types';
-
+import { ITEMS } from '../data/mockData';
+import { useSavedStore } from '../stores/savedStore';
+import type { Item } from '../types';
 // TODO: importar el store y el tipo Item
 // import { useSavedStore } from '../stores/savedStore';
 // import type { Item } from '../types';
@@ -41,12 +43,20 @@ export function DetailScreen(): React.JSX.Element {
   // const isSaved = isItemSaved(id);
 
   // Placeholder hasta que el store esté implementado
-  const isSaved = false;
+  const item: Item | undefined = ITEMS.find((i) => i.id === id);
+  const isSaved = useSavedStore((state) => state.items.some((i) => i.id === id));
+  const addItem = useSavedStore((state) => state.addItem);
+  const removeItem = useSavedStore((state) => state.removeItem);
 
   // TODO: implementar handleToggleSave
   // Si el ítem está guardado → removeItem(id)
   // Si no está guardado → addItem(item)  [necesitas el objeto Item completo]
-  const handleToggleSave = (): void => {
+const handleToggleSave = (): void => {
+    if (isSaved) {
+      removeItem(id);
+    } else if (item) {
+      addItem(item);
+    }
     // TODO: implementar
     // if (isSaved) {
     //   removeItem(id);
@@ -69,9 +79,15 @@ export function DetailScreen(): React.JSX.Element {
 
         {/* TODO: mostrar la descripción del ítem (item.description) */}
         {/* TODO: mostrar campos específicos de tu dominio */}
+        <Text style={styles.description}>{item?.description}</Text>
         <Text style={styles.description}>
-          Adapta esta pantalla a tu dominio: muestra los detalles
-          relevantes de tu ítem aquí.
+          Cilindrada: {item?.engineDisplacement} cc
+        </Text>
+        <Text style={styles.description}>
+          Precio: ${item?.pricePerDia} / día
+        </Text>
+        <Text style={styles.description}>
+          {item?.available ? 'Disponible' : 'No disponible'}
         </Text>
       </View>
 

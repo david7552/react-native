@@ -2,7 +2,7 @@
 // Pantalla de guardados: muestra todos los ítems que el usuario guardó.
 // Lee el estado directamente desde el savedStore (sin props).
 // Demuestra que el mismo store Zustand mantiene consistencia entre tabs.
-
+import { useSavedStore } from '../stores/savedStore';
 import React from 'react';
 import {
   FlatList,
@@ -66,9 +66,9 @@ export function SavedScreen(): React.JSX.Element {
   // const clearAll  = useSavedStore((state) => state.clearAll);
 
   // Placeholder hasta que el store esté implementado
-  const items: Item[] = [];
-  const removeItem = (_id: string): void => {};
-  const clearAll = (): void => {};
+  const items = useSavedStore((state) => state.items);
+  const removeItem = useSavedStore((state) => state.removeItem);
+  const clearAll = useSavedStore((state) => state.clearAll);;
 
   const renderItem: ListRenderItem<Item> = ({ item }) => (
     <SavedItem item={item} onRemove={() => removeItem(item.id)} />

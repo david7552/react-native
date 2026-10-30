@@ -16,42 +16,74 @@ import type { Item } from '../types';
 export const ITEMS: Item[] = [
   {
     id: '1',
-    name: 'Ítem Uno',
-    description: 'Descripción detallada del primer ítem. Adapta este campo a tu dominio.',
+    name: 'Honda CBR19R',
+    description: 'Narajanja, idela para la ciudad.',
+    engineDisplacement:184,
+    pricePerDia:25000,
+    available:true
+    // TODO: agregar campos específicos de tu dominio
   },
   {
     id: '2',
-    name: 'Ítem Dos',
-    description: 'Descripción detallada del segundo ítem. Adapta este campo a tu dominio.',
+    name: 'Yamaha MT-03',
+    description: 'Comoda para las carreteras.',
+    // TODO: agregar campos específicos de tu dominio
+    engineDisplacement:321,
+    pricePerDia:40000,
+    available:true
   },
   {
     id: '3',
-    name: 'Ítem Tres',
-    description: 'Descripción detallada del tercer ítem. Adapta este campo a tu dominio.',
+    name: 'Suzuki V-Strom 2520',
+    description: 'Ideal para viajes cortos y largos.',
+    // TODO: agregar campos específicos de tu dominio
+    engineDisplacement:248,
+    pricePerDia:35000,
+    available:true
   },
   {
     id: '4',
-    name: 'Ítem Cuatro',
-    description: 'Descripción detallada del cuarto ítem. Adapta este campo a tu dominio.',
+    name: 'Kawasaki Ninja 400',
+    description: 'Deportiva con alta agilidad.',
+    // TODO: agregar campos específicos de tu dominio
+    engineDisplacement:399,
+    pricePerDia:45000,
+    available:true
   },
   {
     id: '5',
-    name: 'Ítem Cinco',
-    description: 'Descripción detallada del quinto ítem. Adapta este campo a tu dominio.',
+    name: 'Vespa Primavera 150',
+    description: 'Scooter clasico para ciudad.',
+    // TODO: agregar campos específicos de tu dominio
+    engineDisplacement:155,
+    pricePerDia:30000,
+    available:true
   },
   {
     id: '6',
-    name: 'Ítem Seis',
-    description: 'Descripción detallada del sexto ítem. Adapta este campo a tu dominio.',
+    name: 'Royal Enfrield Himalayan',
+    description: 'perfecta para un dia de aventura y ligera.',
+    // TODO: agregar campos específicos de tu dominio
+    engineDisplacement:411,
+    pricePerDia:50000,
+    available:true
   },
   {
     id: '7',
-    name: 'Ítem Siete',
-    description: 'Descripción detallada del séptimo ítem. Adapta este campo a tu dominio.',
+    name: 'KTM Duke 200',
+    description: 'Naked ligera y nerviosa.',
+    // TODO: agregar campos específicos de tu dominio
+    engineDisplacement:199,
+    pricePerDia:32000,
+    available:true
   },
   {
     id: '8',
-    name: 'Ítem Ocho',
-    description: 'Descripción detallada del octavo ítem. Adapta este campo a tu dominio.',
+    name: 'Bajaj Pulsar NS200',
+    description: 'Economica y confiable.',
+    // TODO: agregar campos específicos de tu dominio
+    engineDisplacement:199,
+    pricePerDia:22000,
+    available:true
   },
 ];

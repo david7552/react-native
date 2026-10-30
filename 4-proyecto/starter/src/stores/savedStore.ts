@@ -42,29 +42,17 @@ export const useSavedStore = create<SavedStore>((set, get) => ({
   items: [],
 
   addItem: (item) => {
-    // TODO: implementar
-    // Verificar que el ítem no esté ya en la lista antes de agregar
-    // Ejemplo:
-    // const alreadySaved = get().items.some((i) => i.id === item.id);
-    // if (alreadySaved) return;
-    // set((state) => ({ items: [...state.items, item] }));
+    if (get().items.some((i) => i.id === item.id)) return;
+    set((state) => ({ items: [...state.items, item] }));
   },
 
   removeItem: (id) => {
-    // TODO: implementar
-    // Filtrar el ítem por id
-    // set((state) => ({ items: state.items.filter((i) => i.id !== id) }));
+    set((state) => ({ items: state.items.filter((i) => i.id !== id) }));
   },
 
   clearAll: () => {
-    // TODO: [EXTRA] implementar
-    // set({ items: [] });
+    set({ items: [] });
   },
 
-  isItemSaved: (id) => {
-    // TODO: implementar
-    // Usar `get()` para leer el estado actual dentro de la acción
-    // return get().items.some((i) => i.id === id);
-    return false; // ← placeholder, reemplazar con la implementación
-  },
+  isItemSaved: (id) => get().items.some((i) => i.id === id),
 }));

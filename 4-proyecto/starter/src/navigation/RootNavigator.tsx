@@ -5,7 +5,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
-
+import { useSavedStore } from '../stores/savedStore';
 import { DetailScreen } from '../screens/DetailScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 import { SavedScreen } from '../screens/SavedScreen';
@@ -45,6 +45,8 @@ function HomeStackNavigator(): React.JSX.Element {
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 export function RootNavigator(): React.JSX.Element {
+  const savedCount = useSavedStore((state) => state.items.length);
+
   // TODO: leer el conteo de guardados desde el store para el badge
   // const savedCount = useSavedStore((state) => state.items.length);
 
@@ -55,6 +57,13 @@ export function RootNavigator(): React.JSX.Element {
         tabBarActiveTintColor: COLORS.accent,
         tabBarInactiveTintColor: COLORS.textSecondary,
         tabBarStyle: { backgroundColor: COLORS.surface },
+        tabBarIcon: ({ focused, color, size }) => {
+          const iconName: keyof typeof Ionicons.glyphMap =
+            route.name === 'Home'
+              ? focused ? 'home' : 'home-outline'
+              : focused ? 'bookmark' : 'bookmark-outline';
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
         // TODO: [EXTRA] implementar tabBarIcon para cada pestaña
         // tabBarIcon: ({ focused, color, size }) => {
         //   let iconName: keyof typeof Ionicons.glyphMap;
@@ -67,20 +76,18 @@ export function RootNavigator(): React.JSX.Element {
         // },
       })}
     >
+      
       <Tab.Screen
         name="Home"
         component={HomeStackNavigator}
-        // TODO: cambiar el label según tu dominio
         options={{ tabBarLabel: 'Inicio' }}
       />
       <Tab.Screen
         name="Saved"
         component={SavedScreen}
         options={{
-          // TODO: cambiar el label según tu dominio
           tabBarLabel: 'Guardados',
-          // TODO: descomentar y conectar al store para el badge dinámico
-          // tabBarBadge: savedCount > 0 ? savedCount : undefined,
+          tabBarBadge: savedCount > 0 ? savedCount : undefined,
         }}
       />
     </Tab.Navigator>
