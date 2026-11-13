@@ -5,6 +5,7 @@
 import React from 'react';
 import {
   FlatList,
+  Image,
   Pressable,
   StyleSheet,
   Text,
@@ -39,11 +40,11 @@ function ItemCard({ item, onPress }: ItemCardProps): React.JSX.Element {
       onPress={onPress}
       testID={`item-card-${item.id}`}
     >
-      {/* Placeholder del thumbnail */}
-      <View style={styles.thumbnail}>
-        {/* TODO: reemplazar con imagen real usando expo-image o Image */}
-        <Text style={styles.thumbnailText}>{item.name.charAt(0)}</Text>
-      </View>
+      <Image
+        source={{ uri: item.imageURL }}
+        style={styles.thumbnail}
+        resizeMode="cover"
+      />
 
       <View style={styles.cardContent}>
         <Text style={styles.cardTitle} numberOfLines={1}>
@@ -52,14 +53,15 @@ function ItemCard({ item, onPress }: ItemCardProps): React.JSX.Element {
         <Text style={styles.cardDescription} numberOfLines={2}>
           {item.description}
         </Text>
-        {/* TODO: agregar campos específicos de tu dominio aquí */}
+        <Text style={styles.cardMeta}>
+          {item.engineDisplacement} cc · ${item.pricePerDia}/día
+        </Text>
       </View>
 
       <Text style={styles.chevron}>›</Text>
     </Pressable>
   );
 }
-
 // ============================================================
 // PANTALLA: HomeScreen
 // ============================================================
@@ -138,13 +140,16 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   thumbnail: {
-    width: 48,
-    height: 48,
-    borderRadius: RADIUS.sm,
-    backgroundColor: COLORS.surface,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  width: 72,
+  height: 72,
+  borderRadius: RADIUS.sm,
+  backgroundColor: COLORS.surface,
+},
+cardMeta: {
+  ...TYPOGRAPHY.caption,
+  color: COLORS.accent,
+  fontWeight: '600',
+},
   thumbnailText: {
     ...TYPOGRAPHY.h3,
     color: COLORS.accent,

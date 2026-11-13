@@ -20,7 +20,8 @@ export const ITEMS: Item[] = [
     description: 'Narajanja, idela para la ciudad.',
     engineDisplacement:184,
     pricePerDia:25000,
-    available:true
+    available:true,
+    imageURL: 'https://picsum.photos/seed/moto1/300/300',
     // TODO: agregar campos específicos de tu dominio
   },
   {
@@ -30,7 +31,8 @@ export const ITEMS: Item[] = [
     // TODO: agregar campos específicos de tu dominio
     engineDisplacement:321,
     pricePerDia:40000,
-    available:true
+    available:true,
+    imageURL: 'https://picsum.photos/seed/moto1/300/300',
   },
   {
     id: '3',
@@ -39,7 +41,8 @@ export const ITEMS: Item[] = [
     // TODO: agregar campos específicos de tu dominio
     engineDisplacement:248,
     pricePerDia:35000,
-    available:true
+    available:true,
+    imageURL: 'https://picsum.photos/seed/moto1/300/300',
   },
   {
     id: '4',
@@ -48,7 +51,8 @@ export const ITEMS: Item[] = [
     // TODO: agregar campos específicos de tu dominio
     engineDisplacement:399,
     pricePerDia:45000,
-    available:true
+    available:true,
+    imageURL: 'https://picsum.photos/seed/moto1/300/300',
   },
   {
     id: '5',
@@ -57,7 +61,8 @@ export const ITEMS: Item[] = [
     // TODO: agregar campos específicos de tu dominio
     engineDisplacement:155,
     pricePerDia:30000,
-    available:true
+    available:true,
+    imageURL: 'https://picsum.photos/seed/moto1/300/300',
   },
   {
     id: '6',
@@ -66,7 +71,8 @@ export const ITEMS: Item[] = [
     // TODO: agregar campos específicos de tu dominio
     engineDisplacement:411,
     pricePerDia:50000,
-    available:true
+    available:true,
+    imageURL: 'https://picsum.photos/seed/moto1/300/300',
   },
   {
     id: '7',
@@ -75,7 +81,8 @@ export const ITEMS: Item[] = [
     // TODO: agregar campos específicos de tu dominio
     engineDisplacement:199,
     pricePerDia:32000,
-    available:true
+    available:true,
+    imageURL: 'https://picsum.photos/seed/moto1/300/300',
   },
   {
     id: '8',
@@ -84,6 +91,7 @@ export const ITEMS: Item[] = [
     // TODO: agregar campos específicos de tu dominio
     engineDisplacement:199,
     pricePerDia:22000,
-    available:true
+    available:true,
+    imageURL: 'https://picsum.photos/seed/moto1/300/300',
   },
 ];

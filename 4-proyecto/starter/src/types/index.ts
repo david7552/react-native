@@ -9,4 +9,5 @@ export interface Item {
   engineDisplacement:number;
   pricePerDia:number;
   available:boolean;
+  imageURL:string;
 }
