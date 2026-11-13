@@ -6,6 +6,7 @@ import { useSavedStore } from '../stores/savedStore';
 import React from 'react';
 import {
   FlatList,
+  Image,
   Pressable,
   StyleSheet,
   Text,
@@ -31,9 +32,11 @@ interface SavedItemProps {
 function SavedItem({ item, onRemove }: SavedItemProps): React.JSX.Element {
   return (
     <View style={styles.card}>
-      <View style={styles.thumbnail}>
-        <Text style={styles.thumbnailText}>{item.name.charAt(0)}</Text>
-      </View>
+      <Image
+        source={{ uri: item.imageURL }}
+        style={styles.thumbnail}
+        resizeMode="cover"
+      />
 
       <View style={styles.cardContent}>
         <Text style={styles.cardTitle} numberOfLines={1}>
@@ -68,7 +71,7 @@ export function SavedScreen(): React.JSX.Element {
   // Placeholder hasta que el store esté implementado
   const items = useSavedStore((state) => state.items);
   const removeItem = useSavedStore((state) => state.removeItem);
-  const clearAll = useSavedStore((state) => state.clearAll);;
+  const clearAll = useSavedStore((state) => state.clearAll);
 
   const renderItem: ListRenderItem<Item> = ({ item }) => (
     <SavedItem item={item} onRemove={() => removeItem(item.id)} />
@@ -155,17 +158,11 @@ const styles = StyleSheet.create({
     gap: SPACING.md,
   },
   thumbnail: {
-    width: 44,
-    height: 44,
-    borderRadius: RADIUS.sm,
-    backgroundColor: COLORS.surface,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  thumbnailText: {
-    ...TYPOGRAPHY.h3,
-    color: COLORS.accent,
-  },
+  width: 44,
+  height: 44,
+  borderRadius: RADIUS.sm,
+  backgroundColor: COLORS.surface,
+},
   cardContent: {
     flex: 1,
     gap: SPACING.xs,

@@ -21,7 +21,7 @@ export const ITEMS: Item[] = [
     engineDisplacement:184,
     pricePerDia:25000,
     available:true,
-    imageURL: 'https://picsum.photos/seed/moto1/300/300',
+    imageURL: 'https://www.galgo.com/pe/comparador/motos/PE279-bajaj-pulsar-200-rs-vs-PE267-honda-cb-190-r',
     // TODO: agregar campos específicos de tu dominio
   },
   {
@@ -32,7 +32,7 @@ export const ITEMS: Item[] = [
     engineDisplacement:321,
     pricePerDia:40000,
     available:true,
-    imageURL: 'https://picsum.photos/seed/moto1/300/300',
+    imageURL: 'https://www.galgo.com/cl/comparador/motos/CL2712-bera-kavak-vs-CL146-yamaha-mt-03',
   },
   {
     id: '3',
@@ -42,7 +42,7 @@ export const ITEMS: Item[] = [
     engineDisplacement:248,
     pricePerDia:35000,
     available:true,
-    imageURL: 'https://picsum.photos/seed/moto1/300/300',
+    imageURL: 'https://www.brm.co.nz/suzuki-v-strom-250sx-review/',
   },
   {
     id: '4',
@@ -52,7 +52,7 @@ export const ITEMS: Item[] = [
     engineDisplacement:399,
     pricePerDia:45000,
     available:true,
-    imageURL: 'https://picsum.photos/seed/moto1/300/300',
+    imageURL: 'https://www.1000ps.com/tr-tr/karsilastirma/366910/kawasaki-ninja-400-2020-vs-honda-cb650r-2024',
   },
   {
     id: '5',
@@ -62,7 +62,7 @@ export const ITEMS: Item[] = [
     engineDisplacement:155,
     pricePerDia:30000,
     available:true,
-    imageURL: 'https://picsum.photos/seed/moto1/300/300',
+    imageURL: 'https://www.vespa.com/it_IT/modelli/primavera/primavera-s-150-4s3v-2024/',
   },
   {
     id: '6',
@@ -72,7 +72,7 @@ export const ITEMS: Item[] = [
     engineDisplacement:411,
     pricePerDia:50000,
     available:true,
-    imageURL: 'https://picsum.photos/seed/moto1/300/300',
+    imageURL: 'https://www.freedomcyclenh.com/Motorcycles-Royal-Enfield-Himalayan-450-2025-Concord-NH-a3aac834-243d-480b-aced-b1e20021ce60',
   },
   {
     id: '7',
@@ -82,7 +82,7 @@ export const ITEMS: Item[] = [
     engineDisplacement:199,
     pricePerDia:32000,
     available:true,
-    imageURL: 'https://picsum.photos/seed/moto1/300/300',
+    imageURL: 'https://auto.shriramfinance.in/brand/honda',
   },
   {
     id: '8',
@@ -92,6 +92,6 @@ export const ITEMS: Item[] = [
     engineDisplacement:199,
     pricePerDia:22000,
     available:true,
-    imageURL: 'https://picsum.photos/seed/moto1/300/300',
+    imageURL: 'https://www.galgo.com/mx/comparador/motos/MX245-bajaj-pulsar-200-ns-fi-abs-vs-MX2783-bajaj-re4s-pasajeros',
   },
 ];

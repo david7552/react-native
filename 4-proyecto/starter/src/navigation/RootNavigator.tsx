@@ -12,8 +12,6 @@ import { SavedScreen } from '../screens/SavedScreen';
 import { COLORS } from '../theme';
 import type { HomeStackParamList, RootTabParamList } from './types';
 
-// TODO: importar el store de guardados para leer el conteo del badge
-// import { useSavedStore } from '../stores/savedStore';
 
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 
@@ -30,7 +28,7 @@ function HomeStackNavigator(): React.JSX.Element {
         name="HomeList"
         component={HomeScreen}
         // TODO: cambiar el título según tu dominio
-        options={{ title: 'Inicio' }}
+        options={{ title: 'Motos' }}
       />
       <HomeStack.Screen
         name="HomeDetail"
@@ -47,7 +45,6 @@ const Tab = createBottomTabNavigator<RootTabParamList>();
 export function RootNavigator(): React.JSX.Element {
   const savedCount = useSavedStore((state) => state.items.length);
 
-  // TODO: leer el conteo de guardados desde el store para el badge
   // const savedCount = useSavedStore((state) => state.items.length);
 
   return (
@@ -64,7 +61,6 @@ export function RootNavigator(): React.JSX.Element {
               : focused ? 'bookmark' : 'bookmark-outline';
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        // TODO: [EXTRA] implementar tabBarIcon para cada pestaña
         // tabBarIcon: ({ focused, color, size }) => {
         //   let iconName: keyof typeof Ionicons.glyphMap;
         //   if (route.name === 'Home') {

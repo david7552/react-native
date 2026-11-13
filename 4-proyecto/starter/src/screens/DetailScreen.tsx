@@ -1,10 +1,9 @@
 // src/screens/DetailScreen.tsx
-// Pantalla de detalle: muestra la información completa de un ítem
-// y permite guardarlo / quitarlo usando el store de Zustand.
-// Esta pantalla demuestra cómo acceder al store desde cualquier screen.
+// Pantalla de detalle: muestra la información completa de una moto
+// y permite guardarla / quitarla usando el store de Zustand.
 
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useRoute, type RouteProp } from '@react-navigation/native';
 
 import { COLORS, RADIUS, SPACING, TYPOGRAPHY } from '../theme';
@@ -12,73 +11,43 @@ import type { HomeStackParamList } from '../navigation/types';
 import { ITEMS } from '../data/mockData';
 import { useSavedStore } from '../stores/savedStore';
 import type { Item } from '../types';
-// TODO: importar el store y el tipo Item
-// import { useSavedStore } from '../stores/savedStore';
-// import type { Item } from '../types';
-// import { ITEMS } from '../data/mockData';
 
 type DetailRouteProp = RouteProp<HomeStackParamList, 'HomeDetail'>;
-
-// ============================================================
-// PANTALLA: DetailScreen
-// ============================================================
 
 export function DetailScreen(): React.JSX.Element {
   const route = useRoute<DetailRouteProp>();
   const { id, name } = route.params;
 
-  // TODO: buscar el ítem completo en ITEMS usando el id de params
-  // const item: Item | undefined = ITEMS.find((i) => i.id === id);
-
-  // ──────────────────────────────────────────────────────────
-  // TODO: obtener los selectores del savedStore
-  // ──────────────────────────────────────────────────────────
-  // Usar selectores individuales para evitar re-renders innecesarios:
-  //
-  // const isItemSaved = useSavedStore((state) => state.isItemSaved);
-  // const addItem    = useSavedStore((state) => state.addItem);
-  // const removeItem = useSavedStore((state) => state.removeItem);
-  //
-  // Luego calcular si el ítem actual está guardado:
-  // const isSaved = isItemSaved(id);
-
-  // Placeholder hasta que el store esté implementado
   const item: Item | undefined = ITEMS.find((i) => i.id === id);
-  const isSaved = useSavedStore((state) => state.items.some((i) => i.id === id));
+
+  // El selector llama al helper del store: devuelve un boolean y el
+  // componente se re-renderiza solo cuando ese valor cambia.
+  const isSaved = useSavedStore((state) => state.isItemSaved(id));
   const addItem = useSavedStore((state) => state.addItem);
   const removeItem = useSavedStore((state) => state.removeItem);
 
-  // TODO: implementar handleToggleSave
-  // Si el ítem está guardado → removeItem(id)
-  // Si no está guardado → addItem(item)  [necesitas el objeto Item completo]
-const handleToggleSave = (): void => {
+  const handleToggleSave = (): void => {
     if (isSaved) {
       removeItem(id);
     } else if (item) {
       addItem(item);
     }
-    // TODO: implementar
-    // if (isSaved) {
-    //   removeItem(id);
-    // } else if (item) {
-    //   addItem(item);
-    // }
   };
 
   return (
     <View style={styles.container}>
-      {/* Icono / thumbnail del ítem */}
-      <View style={styles.hero}>
-        <Text style={styles.heroLetter}>{name.charAt(0)}</Text>
-      </View>
+      {item ? (
+        <Image
+          source={{ uri: item.imageURL }}
+          style={styles.hero}
+          resizeMode="cover"
+        />
+      ) : null}
 
-      {/* Información principal */}
       <View style={styles.info}>
         <Text style={styles.title}>{name}</Text>
         <Text style={styles.id}>ID: {id}</Text>
 
-        {/* TODO: mostrar la descripción del ítem (item.description) */}
-        {/* TODO: mostrar campos específicos de tu dominio */}
         <Text style={styles.description}>{item?.description}</Text>
         <Text style={styles.description}>
           Cilindrada: {item?.engineDisplacement} cc
@@ -91,12 +60,8 @@ const handleToggleSave = (): void => {
         </Text>
       </View>
 
-      {/* ──────────────────────────────────────────────────── */}
-      {/* BOTÓN GUARDAR / QUITAR — conectado al store Zustand  */}
-      {/* ──────────────────────────────────────────────────── */}
-      {/* Este botón demuestra el estado compartido entre pantallas:
-          al guardar aquí, el badge del Tab "Guardados" se actualiza
-          automáticamente sin necesidad de pasar props ni callbacks. */}
+      {/* Al guardar aquí, el badge del tab "Guardados" se actualiza
+          solo, porque ambos leen el mismo store. */}
       <Pressable
         style={({ pressed }) => [
           styles.saveButton,
@@ -114,10 +79,6 @@ const handleToggleSave = (): void => {
   );
 }
 
-// ============================================================
-// ESTILOS
-// ============================================================
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -126,20 +87,10 @@ const styles = StyleSheet.create({
     gap: SPACING.lg,
   },
   hero: {
-    width: 96,
-    height: 96,
+    width: '100%',
+    height: 200,
     borderRadius: RADIUS.lg,
     backgroundColor: COLORS.card,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-  heroLetter: {
-    fontSize: 40,
-    fontWeight: '700',
-    color: COLORS.accent,
   },
   info: {
     gap: SPACING.sm,

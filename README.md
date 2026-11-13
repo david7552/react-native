@@ -1,69 +1,53 @@
-# Semana 01 — Core Components y Flexbox
+# Renta de Motos
 
-> **Fase 1 — Fundamentos RN** | Semana 1 de 18 | ⏱️ 8 horas
+App móvil de renta de motos hecha con React Native y Expo. Permite explorar el catálogo, ver el detalle de cada moto y guardar las favoritas en una lista compartida entre pestañas.
 
-Bienvenido al bootcamp. En esta primera semana sentamos las bases: aprenderás a construir interfaces móviles con los componentes núcleo de React Native y a dominar Flexbox para posicionar elementos en pantalla. Al finalizar tendrás una app funcional adaptada a tu dominio corriendo en simulador.
+## Dominio
 
-## 🎯 Objetivos de aprendizaje
+Renta de motos: cada moto tiene nombre, descripción, imagen, cilindrada (cc), precio por día y disponibilidad.
 
-Al finalizar esta semana, el estudiante será capaz de:
+## Funcionalidades
 
-- [ ] Configurar un proyecto Expo desde cero y ejecutarlo en simulador iOS y Android
-- [ ] Usar los Core Components: `View`, `Text`, `Image`, `ScrollView`, `Pressable` y `TouchableOpacity`
-- [ ] Construir layouts con Flexbox usando `flexDirection`, `justifyContent`, `alignItems` y `flex`
-- [ ] Aplicar estilos con `StyleSheet.create` y gestionar temas de color básicos
-- [ ] Identificar las diferencias clave entre React web y React Native en cuanto a renderizado y estilos
+- Pestaña **Motos**: lista de motos con imagen, nombre, descripción, cilindrada y precio por día.
+- Detalle de cada moto con botón **Guardar / Quitar**.
+- Pestaña **Guardados**: motos guardadas, con opción de quitar una o limpiar todo.
+- Badge en la pestaña **Guardados** con el conteo en tiempo real.
 
-## 📚 Requisitos previos
+## Tecnologías
 
-- JavaScript moderno (ES2022+): arrow functions, destructuring, spread, optional chaining
-- React: componentes funcionales, props, estado con `useState`, efectos con `useEffect`
-- Node.js 20+ instalado
-- [Expo Go](https://expo.dev/go) instalado en el dispositivo o simulador configurado
+- React Native + Expo
+- TypeScript (sin `any`)
+- React Navigation (Bottom Tabs + Native Stack)
+- Zustand para el estado global
+- pnpm
 
-## 🗂️ Estructura de la semana
+## Estructura
 
-| Carpeta        | Contenido                                        | Tiempo |
-| -------------- | ------------------------------------------------ | ------ |
-| `1-teoria/`    | Conceptos: Expo, Core Components, Flexbox        | 2h     |
-| `2-practicas/` | 2 ejercicios guiados con código a descomentar    | 3h     |
-| `3-proyecto/`  | App de tarjetas adaptada al dominio asignado     | 3h     |
+    src/
+    ├── data/mockData.ts          # Catálogo de motos
+    ├── navigation/               # Tabs, stack y tipos de rutas
+    ├── screens/                  # HomeScreen, DetailScreen, SavedScreen
+    ├── stores/savedStore.ts      # Store de motos guardadas
+    ├── theme/                    # Colores, espaciados y tipografía
+    └── types/index.ts            # Interface Item
 
-## 📝 Contenidos
+## Estado global
 
-### Teoría
+`savedStore.ts` expone:
 
-| Archivo | Tema | Descripción |
-| ------- | ---- | ----------- |
-| [01-expo-y-entorno.md](1-teoria/01-expo-y-entorno.md) | Expo y el entorno | Qué es Expo, Expo Go, estructura del proyecto, diferencias con React web |
-| [02-core-components.md](1-teoria/02-core-components.md) | Core Components | View, Text, Image, ScrollView, Pressable, TouchableOpacity, StyleSheet |
-| [03-flexbox-layout.md](1-teoria/03-flexbox-layout.md) | Flexbox en mobile | Ejes, flexDirection, justifyContent, alignItems, flex, casos reales |
+- `items`: motos guardadas
+- `addItem(item)`: agrega una moto (sin duplicados)
+- `removeItem(id)`: quita una moto por id
+- `clearAll()`: vacía los guardados
+- `isItemSaved(id)`: indica si una moto está guardada
 
-### Prácticas
+## Cómo ejecutar
 
-| Ejercicio | Tema | Descripción |
-| --------- | ---- | ----------- |
-| [ejercicio-01-core-components](2-practicas/ejercicio-01-core-components/) | Core Components | Construir una tarjeta de perfil usando View, Text e Image |
-| [ejercicio-02-flexbox-layouts](2-practicas/ejercicio-02-flexbox-layouts/) | Flexbox | Replicar 4 layouts clásicos de apps móviles |
+    pnpm install
+    pnpm start
 
-### Proyecto
+Luego abre la app en un simulador iOS/Android o en Expo Go.
 
-[3-proyecto/README.md](3-proyecto/README.md) — App de tarjetas adaptada al dominio asignado: pantalla principal con lista de tarjetas, cada una muestra los datos básicos del elemento, usando `StyleSheet` y Flexbox.
+## Verificar tipos
 
-## ⏱️ Distribución del tiempo (8 horas)
-
-| Actividad | Tiempo | Descripción |
-| --------- | ------ | ----------- |
-| Teoría | 2h | Leer los 3 archivos de teoría y reproducir los ejemplos |
-| Práctica 01 | 1.5h | Ejercicio Core Components — descomentar y verificar paso a paso |
-| Práctica 02 | 1.5h | Ejercicio Flexbox Layouts — descomentar y verificar paso a paso |
-| Proyecto | 3h | Implementar la app de tarjetas en tu dominio asignado |
-
-## 📌 Entregables
-
-- [ ] Proyecto: app corriendo en simulador con al menos 3 tarjetas de tu dominio
-- [ ] Código subido al repositorio del aprendiz
-
-## 🔗 Navegación
-
-← (primera semana) | [Semana 02 — Listas, Inputs y Estilos →](../week-02-listas_inputs_y_estilos/README.md)
+    pnpm tsc --noEmit
