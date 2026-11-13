@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "week03-navigation",
+    "slug": "week03-navigation",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "dev.bootcamp.week03navigation"
+    },
+    "android": {
+      "package": "dev.bootcamp.week03navigation"
+    },
+    "newArchEnabled": true
+  }
+}
