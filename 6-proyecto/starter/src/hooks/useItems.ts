@@ -1,0 +1,44 @@
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+
+import { apiClient } from '../services/api';
+import type { CreateItemPayload, Item, UpdateItemPayload } from '../types';
+
+export const ITEMS_QUERY_KEY = ['items'] as const;
+
+export function useItems() {
+  return useQuery<Item[]>({
+    queryKey: ITEMS_QUERY_KEY,
+    queryFn: () => apiClient.get<Item[]>('/Catalogo').then(r => r.data),
+  });
+}
+
+export function useItemById(id: number | string) {
+  return useQuery<Item>({
+    queryKey: [...ITEMS_QUERY_KEY, id],
+    queryFn: () => apiClient.get<Item>(`/Catalogo/${id}`).then(r => r.data),
+    enabled: !!id,
+  });
+}
+
+export function useCreateItem() {
+  const queryClient = useQueryClient();
+  return useMutation<Item, Error, CreateItemPayload>({
+    mutationFn: (payload) =>
+      apiClient.post<Item>('/Catalogo', payload).then(r => r.data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ITEMS_QUERY_KEY });
+    },
+  });
+}
+
+export function useUpdateItem() {
+  const queryClient = useQueryClient();
+  return useMutation<Item, Error, UpdateItemPayload>({
+    mutationFn: (payload) =>
+      apiClient.put<Item>(`/Catalogo/${payload.id}`, payload).then(r => r.data),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({ queryKey: ITEMS_QUERY_KEY });
+      queryClient.invalidateQueries({ queryKey: [...ITEMS_QUERY_KEY, variables.id] });
+    },
+  });
+}
